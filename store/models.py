@@ -15,7 +15,7 @@ class Product(models.Model):
     modified_date = models.DateField( auto_now=True)
 
     def get_absolute_url(self):
-        return reverse("store:product_detail", kwargs={"slug": self.slug})
+        return reverse("store:product_detail", args=[self.category.slug ,self.slug])
     
     
 

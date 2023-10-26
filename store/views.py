@@ -1,6 +1,8 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Product
 from category.models import Category
+from django.views.generic import ListView , DetailView
+
 # Create your views here.
 
 def store(request , category_slug=None):
@@ -23,5 +25,6 @@ def store(request , category_slug=None):
     }
     return render(request , 'store/store.html',context)
 
-def product_detail(request , category_slug , product_slug):
-    return render(request , 'store/product_detail.html')
+class ProductDetail(DetailView):
+    model = Product
+    

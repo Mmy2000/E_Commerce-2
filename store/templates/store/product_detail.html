@@ -16,7 +16,7 @@
                     </article> <!-- gallery-wrap .end// -->
                 </aside>
                 <main class="col-md-6 border-left">
-                    <form action="{% url 'carts:add_cart' single_product.id %}" muted="GET">
+                    <form action="{% url 'carts:add_cart' single_product.id %}" muted="POST">
                         <article class="content-body">
 
                             <h2 class="title">{{single_product.name}}</h2>
@@ -33,9 +33,9 @@
                                 <div class="item-option-select">
                                     <h6>Choose Color</h6>
                                     <select class="form-control" name="color" required>
-                                        <option value="" disabled selected>Choose Color</option>
-                                        {% for color in single_product.variation_set.all %}
-                                        <option value="{{color.variation_value}}"> {{color.variation_value}}</option>
+                                        <option value="" disabled selected>Choose</option>
+                                        {% for color in single_product.variation_set.colors %}
+                                        <option value="{{color.variation_value|lower}}"> {{color.variation_value|capfirst}}</option>
                                         {% endfor %}
                                     </select>
 
@@ -45,9 +45,10 @@
                                 <div class="item-option-select">
                                     <h6>Select Size</h6>
                                     <select class="form-control" name="size">
-                                        <option value="Small">Small</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Large">Large</option>
+                                        <option value="" disabled selected>Choose</option>
+                                        {% for size in single_product.variation_set.sizes %}
+                                        <option value="{{size.variation_value|lower}}"> {{size.variation_value|capfirst}}</option>
+                                        {% endfor %}
                                     </select>
 
                                 </div>

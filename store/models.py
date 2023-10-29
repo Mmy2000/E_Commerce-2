@@ -30,13 +30,13 @@ class VariationManager(models.Manager):
 
 variation_category_choice=(
     ('color','color'),
-    ('size','size')
+    ('size','size'),
 )
 
 class Variation(models.Model):
     product = models.ForeignKey(Product,  on_delete=models.CASCADE)
-    variation_category = models.CharField( max_length=50 , choices=variation_category_choice)
-    variation_value = models.CharField( max_length=50 )
+    variation_category = models.CharField( max_length=200 , choices=variation_category_choice)
+    variation_value = models.CharField( max_length=200 )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(  auto_now_add=True)
     objects = VariationManager()

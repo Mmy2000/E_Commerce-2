@@ -37,7 +37,7 @@ def edit_profile(requset):
     profile = Profile.objects.get(user=requset.user)
     if requset.method == "POST":
         user_form = UserForm(requset.POST , instance=requset.user)
-        profile_form = ProfileForm(requset.POST,instance=profile)
+        profile_form = ProfileForm(requset.POST,requset.FILES,instance=profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()

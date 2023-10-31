@@ -9,10 +9,12 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     image = models.ImageField(upload_to='users/')
-    about = models.TextField(max_length=4000)
-    fb_link = models.URLField( max_length=200)
-    twitter_link = models.URLField( max_length=200)
-    instagram_link = models.URLField( max_length=200)
+    about = models.TextField(max_length=4000 , blank=True , null=True)
+    fb_link = models.URLField( max_length=200 , blank=True , null=True)
+    twitter_link = models.URLField( max_length=200, blank=True , null=True)
+    instagram_link = models.URLField( max_length=200, blank=True , null=True)
+    linked_in_link = models.URLField( max_length=200, blank=True , null=True)
+
 
 
     def __str__(self):

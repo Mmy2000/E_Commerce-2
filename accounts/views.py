@@ -14,11 +14,11 @@ def signup(request):
             form.save()
             
             usernames = form.cleaned_data['username']
-            passwords = form.changed_data["password1"]
+            passwords = form.cleaned_data["password1"]
             user = authenticate(username=usernames,password=passwords)
             login(request,user)
 
-            return redirect('/account/profile')
+            return render(request,'profile/profile.html')
             
     else:
         form=SignupForm()

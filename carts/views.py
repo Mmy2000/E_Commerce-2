@@ -3,6 +3,7 @@ from store.models import Product
 from .models import Cart , CartItem
 from django.http import HttpResponse
 from store.models import Variation
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -93,7 +94,7 @@ def remove_cart_item(request , product_id,cart_item_id):
     
     return redirect('/cart')
 
-
+@login_required(login_url='login')
 def carts(request ,total=0 ,quantity=0,cart_item=None ):
     try :
         cart = Cart.objects.get(cart_id = _cart_id(request))
@@ -114,6 +115,7 @@ def carts(request ,total=0 ,quantity=0,cart_item=None ):
                }
     return render(request , 'carts/cart.html',context)
 
+@login_required(login_url='login')
 def checkout(request,total=0 ,quantity=0,cart_item=None):
     try :
         cart = Cart.objects.get(cart_id = _cart_id(request))

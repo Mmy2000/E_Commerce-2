@@ -53,3 +53,6 @@ def edit_profile(requset):
         'user_form':user_form,
         'profile_form':profile_form
     })
+
+def dashboard(request):
+    return render(request,'profile/dashboard.html')

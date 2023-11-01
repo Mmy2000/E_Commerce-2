@@ -59,7 +59,7 @@
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-                <a class="nav-link nav-icon" href="{% url 'carts:cart'%}" >
+                <a class="nav-link nav-icon" href="{% url 'carts:cart'%}">
                     <i class="bi bi-cart-dash"></i>
                     <span class="badge bg-primary badge-number">{{cart_count}}</span>
                 </a>
@@ -99,7 +99,15 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'accounts:dashboard'%}">
+                                <i class="bi bi-speedometer2"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'password_change'%}">
                                 <i class="bi bi-question-circle"></i>
@@ -153,13 +161,23 @@
                     <span>Cart</span>
                 </a>
             </li><!-- End Contact Page Nav -->
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'accounts:dashboard'%}">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+            {% else %}
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'accounts:signup'%}">
                     <i class="bi bi-card-list"></i>
                     <span>Register</span>
                 </a>
-            </li><!-- End Register Page Nav -->
+            </li>
+            {% endif %}
+
+            <!-- End Register Page Nav -->
             {% if user.is_authenticated %}
             {% else %}
             <li class="nav-item">

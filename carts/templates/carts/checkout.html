@@ -18,10 +18,12 @@
                             {% for cart_item in cart_items %}
                             <div class="col-md-6">
                                 <figure class="itemside  mb-4">
-                                    <div class="aside"><img src="{{cart_item.product.image.url}}" class="border img-sm"></div>
+                                    <div class="aside"><img src="{{cart_item.product.image.url}}" class="border img-sm">
+                                    </div>
                                     <figcaption class="info">
                                         <p>{{cart_item.product.name}} </p>
-                                        <span class="text-muted">{{cart_item.quantity}}x = ${{cart_item.sub_total}}</span>
+                                        <span class="text-muted">{{cart_item.quantity}}x =
+                                            ${{cart_item.sub_total}}</span>
                                     </figcaption>
                                 </figure>
                             </div> <!-- col.// -->
@@ -175,6 +177,7 @@
                             <img src="{% static './images/misc/payments.png'%}" height="26">
                         </p>
                         <a href="./place-order.html" class="btn btn-primary btn-block"> Place Order </a>
+                        <a href="{% url 'store:store'%}" class="btn btn-light btn-block">Continue Shopping</a>
 
                     </div> <!-- card-body.// -->
                 </div> <!-- card.// -->

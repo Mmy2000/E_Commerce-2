@@ -56,8 +56,8 @@
                         </dl>
                         <dl class="dlist-align">
                             <dt>Address:</dt>
-                            <dd class="text-right text-dark b"><strong>{{order.full_address}} , {{order.city}}
-                                    ,{{order.state}} , {{order.country}}</strong></dd>
+                            <dd class="text-right text-dark b"><strong> {{order.city}}
+                                    , {{order.state}} , {{order.country}} , {{order.full_address}} </strong></dd>
                         </dl>
                         {% if order.order_note %}
                         <dl class="dlist-align">
@@ -80,30 +80,6 @@
                 </div> <!-- card.// -->
             </aside>
 
-            <article>
-                <div class="card">
-                    <header class="card-header">
-                        <img src="{% static './images/misc/payment-paypal.png'%}" class="float-right" height="24">
-                        <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
-                            <input class="form-check-input" name="payment-option" checked type="radio" value="option2">
-                            <h6 class="form-check-label">
-                                Paypal
-                            </h6>
-                        </label>
-                    </header>
-                    <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
-                        <div class="card-body">
-                            <p class="text-center text-muted">Connect your PayPal account and use it to pay your
-                                bills. You'll be redirected to PayPal to add your billing information.</p>
-                            <p class="text-center">
-                                <button type="submit" class="btn btn-primary " name="submit">Make Payment</button>
-                                <br><br>
-                            </p>
-                        </div> <!-- card body .// -->
-                    </div> <!-- collapse .// -->
-                </div> <!-- card.// -->
-
-            </article> <!-- col.// -->
         </div> <!-- row.// -->
         <!-- ============================ COMPONENT 2 END//  ================================= -->
 

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     "django_bootstrap5",
+    'orders',
 ]
 
 MIDDLEWARE = [

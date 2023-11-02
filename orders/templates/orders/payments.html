@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<!-- section-header.// -->
+<section class="section-content padding-y bg">
+    <div class="container">
+
+        <!-- ============================ COMPONENT 2 ================================= -->
+
+        <div class="row">
+            <main class="col-md-8">
+
+                <article class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Review cart</h4>
+                        <div class="row">
+                            {% for cart_item in cart_items %}
+                            <div class="col-md-6">
+                                <figure class="itemside  mb-4">
+                                    <div class="aside"><img src="{{cart_item.product.image.url}}" class="border img-sm">
+                                    </div>
+                                    <figcaption class="info">
+                                        <p>{{cart_item.product.name}} </p>
+                                        <span class="text-muted">{{cart_item.quantity}}x =
+                                            ${{cart_item.sub_total}}</span>
+                                    </figcaption>
+                                </figure>
+                            </div> <!-- col.// -->
+                            {% endfor %}
+                        </div> <!-- row.// -->
+                    </div> <!-- card-body.// -->
+                </article> <!-- card.// -->
+
+
+                <!-- accordion end.// -->
+
+            </main> <!-- col.// -->
+            <aside class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">${{total}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Tax:</dt>
+                            <dd class="text-right"> ${{tax}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Grand Total:</dt>
+                            <dd class="text-right text-dark b"><strong>${{grand_total}}</strong></dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Name:</dt>
+                            <dd class="text-right text-dark b"><strong>{{order.full_name}}</strong></dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Address:</dt>
+                            <dd class="text-right text-dark b"><strong>{{order.full_address}} , {{order.city}}
+                                    ,{{order.state}} , {{order.country}}</strong></dd>
+                        </dl>
+                        {% if order.order_note %}
+                        <dl class="dlist-align">
+                            <dt>Order Note:</dt>
+                            <dd class="text-right text-dark b"><strong> {{order.order_note}}</strong></dd>
+                        </dl>
+                        {% else %}
+                        {% endif %}
+                        <hr>
+                        <dl class="dlist-align">
+                            <dt>Pqyment Method:</dt>
+                            <dd class="text-right text-dark b"><strong>PayPal</strong></dd>
+                        </dl>
+                        <p class="text-center mb-3">
+                            <img src="{% static './images/misc/payments.png'%}" height="26">
+                        </p>
+                        <a href="{% url 'store:store'%}" class="btn btn-light btn-block">Continue Shopping</a>
+
+                    </div> <!-- card-body.// -->
+                </div> <!-- card.// -->
+            </aside>
+
+            <article>
+                <div class="card">
+                    <header class="card-header">
+                        <img src="{% static './images/misc/payment-paypal.png'%}" class="float-right" height="24">
+                        <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
+                            <input class="form-check-input" name="payment-option" checked type="radio" value="option2">
+                            <h6 class="form-check-label">
+                                Paypal
+                            </h6>
+                        </label>
+                    </header>
+                    <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
+                        <div class="card-body">
+                            <p class="text-center text-muted">Connect your PayPal account and use it to pay your
+                                bills. You'll be redirected to PayPal to add your billing information.</p>
+                            <p class="text-center">
+                                <button type="submit" class="btn btn-primary " name="submit">Make Payment</button>
+                                <br><br>
+                            </p>
+                        </div> <!-- card body .// -->
+                    </div> <!-- collapse .// -->
+                </div> <!-- card.// -->
+
+            </article> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 2 END//  ================================= -->
+
+
+
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock body %}

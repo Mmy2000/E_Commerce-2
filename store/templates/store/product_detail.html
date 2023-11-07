@@ -145,6 +145,7 @@
 
                 <header class="section-heading">
                     <h3>Customer Reviews </h3>
+                    <span>{{single_product.count_review}} reviews</span>
                     <div class="rating-star">
                         <span>
                             <i class="fa fa-star{% if single_product.avr_review < 0.5%}-o{% elif single_product.avr_review >= 0.5 and single_product.avr_review < 1%}-half-o{%endif%}"

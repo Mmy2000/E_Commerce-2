@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -18,6 +19,12 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[self.category.slug ,self.slug])
     
+    def avr_review(self):
+        reviews = ReviewRating.objects.filter(product=self , status=True).aggregate(average=Avg('rating'))
+        avg =0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
 
     def __str__(self):
         return self.name

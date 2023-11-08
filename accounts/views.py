@@ -34,25 +34,25 @@ def profile(request):
     return render(request,'profile/profile.html',{'profile':profile})
 
 
-def edit_profile(requset):
-    profile = Profile.objects.get(user=requset.user)
-    if requset.method == "POST":
-        user_form = UserForm(requset.POST , instance=requset.user)
-        profile_form = ProfileForm(requset.POST,requset.FILES,instance=profile)
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        user_form = UserForm(request.POST , instance=request.user)
+        profile_form = ProfileForm(request.POST,request.FILES,instance=profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             myprofile = profile_form.save(commit=False)
-            myprofile.user = requset.user
+            myprofile.user = request.user
             myprofile.save()
             return redirect('/accounts/profile')
     else:
-        user_form = UserForm(instance=requset.user)
+        user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=profile)
 
-    return render(requset,'profile/profile_edit.html',{
+    return render(request,'profile/profile_edit.html',{
         'user_form':user_form,
-        'profile_form':profile_form
+        'profile_form':profile_form,
     })
 
 def dashboard(request):

@@ -9,10 +9,10 @@
             <aside class="col-md-3">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
-                    <a class="list-group-item active" href="#"> Dashboard </a>
-                    <a class="list-group-item" href="#"> My Orders </a>
-                    <a class="list-group-item" href="#"> Edit Profile </a>
-                    <a class="list-group-item" href="#">Change Password </a>
+                    <a class="list-group-item active" href="{% url 'accounts:dashboard'%}"> Dashboard </a>
+                    <a class="list-group-item" href="{% url 'accounts:my_orders'%}"> My Orders </a>
+                    <a class="list-group-item" href="{% url 'accounts:edit_profile'%}"> Edit Profile </a>
+                    <a class="list-group-item" href="{% url 'password_change'%}">Change Password </a>
                 </ul>
                 <br>
                 <a class="btn btn-light btn-block" href="{% url 'logout'%}"> <i class="fa fa-power-off"></i> <span
@@ -33,7 +33,7 @@
                                     <div class="card-body" >
                                         <h5 class="card-title">Total Orders</h5>
                                         <h4>{{orders_count}}</h4>
-                                        <a href="">View Orders</a>
+                                        <a href="{% url 'accounts:my_orders'%}">View Orders</a>
                                     </div>
                                 </div>
                             </div>

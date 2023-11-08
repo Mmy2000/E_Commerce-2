@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from .forms import SignupForm , UserForm , ProfileForm
 from .models import Profile
+from orders.models import Order
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login 
 
@@ -55,4 +56,11 @@ def edit_profile(requset):
     })
 
 def dashboard(request):
-    return render(request,'profile/dashboard.html')
+    profile=Profile.objects.get(user=request.user)
+    orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id,is_orderd=True)
+    orders_count = orders.count()
+    return render(request,'profile/dashboard.html',{
+        'profile':profile,
+        'orders':orders,
+        'orders_count':orders_count,
+    })

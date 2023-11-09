@@ -40,7 +40,7 @@
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
                                     <div class="card-body" >
-                                        <img src="https://www.w3schools.com/howto/img_avatar.png" width="50" hight="50" style="border-radius:50%;" >
+                                        <img src="{% if profile.image %}{{profile.image.url}}{% else %} https://www.w3schools.com/howto/img_avatar.png {% endif %}" width="50" hight="50" style="border-radius:50%;" >
                                         <p class="mb-0">{{user.email}}</p>
                                         <p>{{profile.phone_number}}</p>
                                     </div>

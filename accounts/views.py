@@ -71,3 +71,6 @@ def my_orders(request):
         'orders':orders,
     }
     return render(request,'profile/my_orders.html',context)
+
+def order_detail(request,order_id):
+    return render(request,'profile/order_detail.html')

@@ -74,7 +74,9 @@ def my_orders(request):
 
 def order_detail(request,order_id):
     profile=Profile.objects.get(user=request.user)
+    orders = Order.objects.filter(user=request.user,is_orderd=True).order_by('-created_at')
     context = {
         'profile':profile,
+        'orders':orders,
     }
     return render(request,'profile/order_detail.html',context)

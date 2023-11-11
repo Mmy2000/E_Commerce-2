@@ -4,7 +4,7 @@ from .models import Profile
 from orders.models import Order
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login 
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -65,6 +65,7 @@ def dashboard(request):
         'orders_count':orders_count,
     })
 
+@login_required(login_url='login')
 def my_orders(request):
     orders = Order.objects.filter(user=request.user,is_orderd=True).order_by('-created_at')
     context = {
@@ -74,7 +75,7 @@ def my_orders(request):
 
 def order_detail(request,order_id):
     profile=Profile.objects.get(user=request.user)
-    orders = Order.objects.filter(user=request.user,is_orderd=True).order_by('-created_at')
+    orders = Order.objects.get(order_number=order_id)
     context = {
         'profile':profile,
         'orders':orders,

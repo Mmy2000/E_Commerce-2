@@ -25,9 +25,9 @@
                                 <ul class="list-unstyled text-right">
                                     <li><strong>Invoiced To</strong></li>
                                     <li>{{profile.full_name}}</li>
-                                    <li>Roupark 37</li>
+                                    <li>{{orders.full_address}} 37</li>
                                     <li>{{orders.created_at}}</li>
-                                    <li>USA</li>
+                                    <li>{{orders.country}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -37,10 +37,10 @@
                             <div class="invoice-details mt25">
                                 <div class="well">
                                     <ul class="list-unstyled mb0">
-                                        <li><strong>Order</strong> #</li>
-                                        <li><strong>Transaction</strong> #</li>
+                                        <li><strong>Order</strong> #{{orders.order_number}}</li>
+                                        <li><strong>Transaction</strong>{{orders.payment.payment_id}}</li>
                                         <li><strong>Order Date:</strong> {{orders.created_at}}</li>
-                                        <li><strong>Status:</strong> PAID</li>
+                                        <li><strong>Status:</strong> {{orders.status}}</li>
                                     </ul>
                                 </div>
                             </div>

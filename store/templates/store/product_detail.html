@@ -5,6 +5,24 @@
     .rating-star i {
         color: #ffb503 !important;
     }
+
+    ul.thumb {
+        margin: 0 auto;
+        padding: 0;
+        float: left;
+    }
+
+    ul.thumb li {
+        list-style: none;
+        margin: 10px;
+    }
+
+    ul.thumb li img {
+        width: 80px;
+        height: 80px;
+        border: 1px solid gray;
+
+    }
 </style>
 <section class="section-content padding-y bg">
     <div class="container">
@@ -14,11 +32,21 @@
             <div class="row no-gutters">
                 <aside class="col-md-6">
                     <article class="gallery-wrap">
-                        <div class="img-big-wrap">
-                            <img src="{{single_product.image.url}}">
+                        <div class="img-big-wrap mainImage">
+                            <center><img src="{{single_product.image.url}}"></center>
                         </div> <!-- img-big-wrap.// -->
 
                     </article> <!-- gallery-wrap .end// -->
+                    <ul class="thumb">
+                        <li>
+                            <a href="{{single_product.image.url}}" target="mainImage"><img src="{{single_product.image.url}}"
+                                    alt="Product Image"></a>
+                            {% for image in product_gallary  %}
+                            <a href="{{image.image.url}}" target="mainImage"><img src="{{image.image.url}}"
+                                    alt="Product Image"></a>
+                            {% endfor %}
+                        </li>
+                    </ul>
                 </aside>
                 <main class="col-md-6 border-left">
                     <form action="{% url 'carts:add_cart' single_product.id %}" method="POST">
@@ -204,5 +232,13 @@
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.thumb a').click(function (e) {
+            e.preventDefault();
+            $('.mainImage img').attr('src', $(this).attr("href"));
+        })
+    })
+</script>
 {% endblock body %}

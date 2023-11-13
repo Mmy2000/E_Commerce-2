@@ -238,41 +238,55 @@
                                     <p class="small fst-italic">{{profile.about}}</p>
 
                                     <h5 class="card-title">Profile Details</h5>
-
+                                    {% if profile.full_name %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                        <div class="col-lg-9 col-md-8">{{profile.user.username}}</div>
+                                        <div class="col-lg-9 col-md-8">{{profile.full_name}}</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.company %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Company</div>
-                                        <div class="col-lg-9 col-md-8">{{profile.address}}</div>
+                                        <div class="col-lg-9 col-md-8">{{profile.company}}</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.headline %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Job</div>
-                                        <div class="col-lg-9 col-md-8">Web Designer</div>
+                                        <div class="col-lg-9 col-md-8">{{profile.headline}}</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.country %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Country</div>
                                         <div class="col-lg-9 col-md-8">USA</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.address %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Address</div>
                                         <div class="col-lg-9 col-md-8">{{profile.address}}</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.phone_number %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
                                         <div class="col-lg-9 col-md-8">{{profile.phone_number}}</div>
                                     </div>
-
+                                    {% else %}
+                                    {% endif %}
+                                    {% if profile.user.email %}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
                                         <div class="col-lg-9 col-md-8">{{profile.user.email}}</div>
                                     </div>
+                                    {% else %}
+                                    {% endif %}
 
                                 </div>
 

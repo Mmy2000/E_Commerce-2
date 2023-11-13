@@ -44,7 +44,7 @@ def place_order(request,total=0 ,quantity=0):
             yr = int(datetime.date.today().strftime('%Y'))
             dt = int(datetime.date.today().strftime('%d'))
             mt = int(datetime.date.today().strftime('%m'))
-            d = datetime.date(yr,dt,mt)
+            d = datetime.date(yr,mt,dt)
             current_date = d.strftime("%Y%m%d")
             order_number = current_date + str(data.id)
             data.order_number = order_number
@@ -62,4 +62,5 @@ def place_order(request,total=0 ,quantity=0):
         return redirect(reverse('carts:store'))
 
 def payments(request):
+
     return render(request , 'orders/payments.html')

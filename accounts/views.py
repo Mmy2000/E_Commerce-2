@@ -5,6 +5,7 @@ from orders.models import Order
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -45,6 +46,7 @@ def edit_profile(request):
             myprofile = profile_form.save(commit=False)
             myprofile.user = request.user
             myprofile.save()
+            messages.success(request,'Done! Your Profile has been updated.')
             return redirect('/accounts/profile')
     else:
         user_form = UserForm(instance=request.user)

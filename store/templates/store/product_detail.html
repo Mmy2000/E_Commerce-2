@@ -82,6 +82,7 @@
                             <p>{{single_product.description}}</p>
 
                             <hr>
+                            {% if single_product.variation_set.colors %}
                             <div class="row">
                                 <div class="item-option-select">
                                     <h6>Choose Color</h6>
@@ -95,6 +96,9 @@
 
                                 </div>
                             </div> <!-- row.// -->
+                            {% else %}
+                            {% endif %}
+                            {% if single_product.variation_set.sizes %}
                             <div class="row">
                                 <div class="item-option-select">
                                     <h6>Select Size</h6>
@@ -108,6 +112,8 @@
 
                                 </div>
                             </div> <!-- row.// -->
+                            {% else %}
+                            {% endif %}
                             <hr>
                             {% if single_product.stock <= 0 %}
                             <h5>Out Of Stock</h5>

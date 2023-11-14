@@ -102,6 +102,8 @@
                                 {% for category in links %}
                                 <a class="dropdown-item" href="{{category.get_url}}">{{category}}</a>
                                 {% endfor %}
+                                <a href="{% url 'category:category_list'%}" class="btn btn-block btn-primary">All Categories
+                                </a>
                             </div>
                         </div> <!-- category-wrap.// -->
                     </div> <!-- col.// -->

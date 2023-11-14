@@ -31,7 +31,14 @@
 					<a href="{{product.get_absolute_url}}" class="img-wrap"> <img src="{{product.image.url}}"> </a>
 					<figcaption class="info-wrap">
 						<a href="{{product.get_absolute_url}}" class="title">{{product}}</a>
-						<div class="price mt-1">${{product.price}}</div> <!-- price-wrap.// -->
+						<div class="price-wrap mt-2">
+							{% if product.discount <= 0 %}
+							<span class="price">${{product.price}}</span>
+							{% else %}
+							<span class="price">${{product.discount}}</span>
+							<del class="price-old">${{product.price}}</del>
+							{% endif %}
+						</div> <!-- price-wrap.// -->
 						<div class="rating-star">
 							<span>
 								<i class="fa fa-star{% if product.avr_review < 0.5%}-o{% elif product.avr_review >= 0.5 and product.avr_review < 1%}-half-o{%endif%}"

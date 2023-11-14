@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.TextField( max_length=2000 , blank=True)
     image = models.ImageField( upload_to='product_img')
     price = models.IntegerField()
+    discount = models.IntegerField(default=0)
     stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey("category.Category", verbose_name=("category product"), on_delete=models.CASCADE)

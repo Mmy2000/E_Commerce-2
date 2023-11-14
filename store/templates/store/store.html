@@ -142,8 +142,12 @@
                                 <div class="fix-height">
                                     <a href="{{product.get_absolute_url}}" class="title">{{product}}</a>
                                     <div class="price-wrap mt-2">
+                                        {% if product.discount <= 0 %}
                                         <span class="price">${{product.price}}</span>
-                                        <del class="price-old">$</del>
+                                        {% else %}
+                                        <span class="price">${{product.discount}}</span>
+                                        <del class="price-old">${{product.price}}</del>
+                                        {% endif %}
                                     </div>
                                     <div class="rating-star">
                                         <span>

@@ -15,7 +15,7 @@ from django.contrib import messages
 
 def store(request , category_slug=None):
     categories = None
-    product = None
+    products = None
     
 
     if category_slug != None :

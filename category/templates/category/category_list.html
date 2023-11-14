@@ -7,9 +7,9 @@
 			{% for category in object_list %}
 			<div class="col-md-3">
 				<div class="card card-product-grid">
-					<a href="#" class="img-wrap"> <img src="#"> </a>
+					<a href="{{category.get_url}}" class="img-wrap"> <img src="{{category.image.url}}"> </a>
 					<figcaption class="info-wrap">
-						<a href="#" class="title">{{category}}</a>
+						<a href="{{category.get_url}}" class="title">{{category}}</a>
 					</figcaption>
 				</div>
 			</div> <!-- col.// -->

@@ -72,20 +72,20 @@ def place_order(request, total=0, quantity=0,):
 
 def payments(request):
     body = json.loads(request.body)
-    order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+    order = Order.objects.get(user=request.user, is_orderd=False, order_number=body['orderID'])
 
     # Store transaction details inside Payment model
     payment = Payment(
         user = request.user,
         payment_id = body['transID'],
         payment_method = body['payment_method'],
-        amount_paid = order.order_total,
+        payment_paid = order.order_total,
         status = body['status'],
     )
     payment.save()
 
     order.payment = payment
-    order.is_ordered = True
+    order.is_orderd = True
     order.save()
 
     # Move the cart items to Order Product table
@@ -117,15 +117,7 @@ def payments(request):
     # Clear cart
     CartItem.objects.filter(user=request.user).delete()
 
-    # Send order recieved email to customer
-    mail_subject = 'Thank you for your order!'
-    message = render_to_string('orders/order_recieved_email.html', {
-        'user': request.user,
-        'order': order,
-    })
-    to_email = request.user.email
-    send_email = EmailMessage(mail_subject, message, to=[to_email])
-    send_email.send()
+   
 
     # Send order number and transaction id back to sendData method via JsonResponse
     data = {

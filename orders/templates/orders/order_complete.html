@@ -7,7 +7,7 @@
     <h2 class="text-center">Payment Successful</h2>
 	<br>
 	<div class="text-center">
-		<a href="{% url 'store' %}" class="btn btn-success">Shop more</a>
+		<a href="{% url 'store:store' %}" class="btn btn-success">Shop more</a>
 	</div>
 </div>
 
@@ -64,7 +64,7 @@
                                         <tbody>
                                           {% for item in ordered_products %}
                                             <tr>
-                                                <td>{{item.product.product_name}}
+                                                <td>{{item.product.name}}
                                                   <p class="text-muted small">
                                           					{% if item.variations.all %}
                                           						{% for i in item.variations.all %}

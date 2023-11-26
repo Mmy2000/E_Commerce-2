@@ -59,14 +59,12 @@
 												<form action="{% url 'carts:add_cart' cart_item.product.id %}"
 													method="POST">
 													{% csrf_token %}
-													{% if cart_item.variations.all %}
 													{% for item in cart_item.variations.all %}
 													<input type="hidden" name="{{item.variation_category | lower}}"
 														value="{{item.variation_value | capfirst}}">
 													{% endfor %}
 													<button class="btn btn-light" type="submit" id="button-minus"> <i
 															class="fa fa-plus"></i> </button>
-													{% endif %}
 												</form>
 											</div>
 										</div> <!-- input-group.// -->

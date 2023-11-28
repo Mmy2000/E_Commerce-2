@@ -70,7 +70,11 @@
                                                     </p>
                                                 </td>
                                                 <td class="text-center">{{order.quantity}}</td>
+                                                {% if order.product.discount %}
+                                                <td class="text-center">{{order.quantity}} x ${{order.product.discount}} USD</td>
+                                                {% else %}
                                                 <td class="text-center">{{order.quantity}} x ${{order.product.price}} USD</td>
+                                                {% endif %}
                                             </tr>
                                             {% endfor %}
                                         </tbody>

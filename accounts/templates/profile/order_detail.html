@@ -52,40 +52,41 @@
                                             <tr>
                                                 <th class="per70 text-center">Description</th>
                                                 <th class="per5 text-center">Qty</th>
-                                                <th class="per25 text-center">Total</th>
+                                                <th class="per25 text-center">Price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for order in order_detail %}
                                             <tr>
-                                                <td>1024MB Cloud 2.0 Server - elisium.dynamic.com (12/04/2014 -
-                                                    01/03/2015)</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">$25.00 USD</td>
+                                                <td class="align-middle"><img src="{{order.product.image.url}}"
+                                                        alt="" style="width: 50px;">
+                                                    {{order}}<p class="text-muted small"><br>
+                                                        {% if order.variations.all %}
+                                                        {% for item in order.variations.all  %}
+                                                        {{item.variation_category|capfirst}} :
+                                                        {{item.variation_value|capfirst}}<br>
+                                                        {% endfor %}
+                                                        {% endif %}
+                                                    </p>
+                                                </td>
+                                                <td class="text-center">{{order.quantity}}</td>
+                                                <td class="text-center">${{order.product.price}} USD</td>
                                             </tr>
-                                            <tr>
-                                                <td>Logo design</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">$200.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Backup - 1024MB Cloud 2.0 Server - elisium.dynamic.com</td>
-                                                <td class="text-center">12</td>
-                                                <td class="text-center">$12.00 USD</td>
-                                            </tr>
+                                            {% endfor %}
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th colspan="2" class="text-right">Sub Total:</th>
-                                                <th class="text-center">$237.00 USD</th>
+                                                <th class="text-center">${{subtotal}} USD</th>
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="text-right">Tax:</th>
-                                                <th class="text-center">$47.40 USD</th>
+                                                <th class="text-center">${{orders.tax}} USD</th>
                                             </tr>
 
                                             <tr>
                                                 <th colspan="2" class="text-right">Grand Total:</th>
-                                                <th class="text-center">$284.4.40 USD</th>
+                                                <th class="text-center">${{orders.order_total}} USD</th>
                                             </tr>
                                         </tfoot>
                                     </table>

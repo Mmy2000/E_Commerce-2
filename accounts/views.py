@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from .forms import SignupForm , UserForm , ProfileForm
 from .models import Profile
-from orders.models import Order
+from orders.models import Order , OrderProduct
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login 
 from django.contrib.auth.decorators import login_required
@@ -78,8 +78,14 @@ def my_orders(request):
 def order_detail(request,order_id):
     profile=Profile.objects.get(user=request.user)
     orders = Order.objects.get(order_number=order_id)
+    order_detail = OrderProduct.objects.filter(order__order_number=order_id)
+    subtotal = 0
+    for i in order_detail:
+        subtotal+=i.product_price * i.quantity
     context = {
         'profile':profile,
         'orders':orders,
+        'order_detail':order_detail,
+        'subtotal':subtotal,
     }
     return render(request,'profile/order_detail.html',context)

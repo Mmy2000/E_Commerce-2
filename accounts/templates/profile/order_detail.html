@@ -52,7 +52,7 @@
                                             <tr>
                                                 <th class="per70 text-center">Description</th>
                                                 <th class="per5 text-center">Qty</th>
-                                                <th class="per25 text-center">Price</th>
+                                                <th class="per25 text-center">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,7 +70,7 @@
                                                     </p>
                                                 </td>
                                                 <td class="text-center">{{order.quantity}}</td>
-                                                <td class="text-center">${{order.product.price}} USD</td>
+                                                <td class="text-center">{{order.quantity}} x ${{order.product.price}} USD</td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>

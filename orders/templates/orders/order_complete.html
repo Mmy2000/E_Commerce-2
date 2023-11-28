@@ -64,7 +64,8 @@
                                         <tbody>
                                           {% for item in ordered_products %}
                                             <tr>
-                                                <td>{{item.product.name}}
+                                                <td><img src="{{item.product.image.url}}"
+                                                        alt="" style="width: 50px;">{{item.product.name}}
                                                   <p class="text-muted small">
                                           					{% if item.variations.all %}
                                           						{% for i in item.variations.all %}

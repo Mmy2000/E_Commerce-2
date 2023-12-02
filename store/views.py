@@ -58,6 +58,10 @@ def product_detail(request,category_slug,product_slug):
             orderproduct = None
     else :
         orderproduct = None
+    
+    orderproduct_2 =  OrderProduct.objects.filter(user=request.user , product_id=single_product.id)
+    orderproduct_count = orderproduct_2.count()
+    
 
     reviews = ReviewRating.objects.filter(product_id=single_product.id , status=True)
     product_gallary = ProductGallary.objects.filter(product_id=single_product.id)
@@ -67,6 +71,7 @@ def product_detail(request,category_slug,product_slug):
         'orderproduct':orderproduct,
         'reviews':reviews,
         'product_gallary':product_gallary,
+        'orderproduct_count':orderproduct_count,
     }
     return render(request,'store/product_detail.html',context)
 

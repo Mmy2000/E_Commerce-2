@@ -27,6 +27,14 @@ def store(request , category_slug=None ):
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
         product_count = products.count()
+        min_price = request.GET.get('min_price')
+        max_price = request.GET.get('max_price')
+
+        if min_price:
+            products = products.filter(price=min_price)
+
+        if max_price:
+            products = products.filter(price=max_price)
 
     else:
         products = Product.objects.all().filter(is_available=True).order_by('-created_at')
@@ -36,6 +44,14 @@ def store(request , category_slug=None ):
         page = request.GET.get('page')
         paged_product = paginator.get_page(page)
         product_count = products.count()
+        min_price = request.GET.get('min_price')
+        max_price = request.GET.get('max_price')
+
+        if min_price:
+            products = products.filter(price=min_price)
+
+        if max_price:
+            products = products.filter(price=max_price)
 
     context = {
         'products' : paged_product ,
@@ -43,6 +59,22 @@ def store(request , category_slug=None ):
         'reviews':reviews,
     }
     return render(request , 'store/store.html',context)
+
+def product_by_price(request):
+    products = Product.objects.filter(is_available=True)
+
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+    if min_price:
+            products = products.filter(price__gte=min_price)
+
+    if max_price:
+            products = products.filter(price__lte=max_price)
+        
+    context = {'products': products}
+    return render(request , 'store/store.html',context)
+
 
 
 def product_detail(request,category_slug,product_slug):

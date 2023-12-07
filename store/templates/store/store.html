@@ -46,35 +46,26 @@
                         </div>
                     </article> <!-- filter-group  .// -->
                     <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Sizes </h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_4" style="">
-                            <div class="card-body">
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XS </span>
-                                </label>
+                        <form method="GET" action="{% url 'store:product_by_size'%}">
+                            <header class="card-header">
 
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> SM </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> LG </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XXL </span>
-                                </label>
-                            </div><!-- card-body.// -->
-                        </div>
+                                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true"
+                                    class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Filter by variations </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_4" style="">
+                                <div class="card-body">
+                                    <div class="form-group col-md-12">
+                                        <label for="min_price">Enter Your variation:</label>
+                                        <input class="mr-2 form-control" type="text" name="variation_name"
+                                            value="{{ request.GET.variation_name}}">
+                                    </div>
+                                </div><!-- card-body.// -->
+                            </div>
+                            <button class="btn btn-block btn-primary">Apply</button>
+                        </form>
                     </article> <!-- filter-group .// -->
 
                     <article class="filter-group">

@@ -98,7 +98,7 @@ def product_detail(request,category_slug,product_slug):
     else :
         orderproduct = None
     
-    orderproduct_2 =  OrderProduct.objects.filter(user=request.user , product_id=single_product.id)
+    orderproduct_2 =  OrderProduct.objects.filter( product_id=single_product.id)
     orderproduct_count = orderproduct_2.count()
     
 

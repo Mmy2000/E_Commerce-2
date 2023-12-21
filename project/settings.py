@@ -73,6 +73,7 @@ TEMPLATES = [
                 'category.context_processor.menu_links',
                 'carts.context_processors.counter',
                 'settings.footer.myfooter',
+                'accounts.favorite_context.counter',
             ],
         },
     },

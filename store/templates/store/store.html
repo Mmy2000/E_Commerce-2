@@ -38,7 +38,8 @@
                                     <li><a href="{{category.get_url}}">{{category}} </a></li>
                                     {% endfor %}
 
-                                    <a style="color: white;" href="{% url 'category:category_list'%}" class="btn btn-block btn-primary">All
+                                    <a style="color: white;" href="{% url 'category:category_list'%}"
+                                        class="btn btn-block btn-primary">All
                                         Categories</a>
                                 </ul>
 
@@ -59,14 +60,14 @@
                                 <div class="card-body">
                                     <div class="form-group col-md-12">
                                         <label for="min_price">Enter Your variation:</label>
-                                        <input placeholder="Color or Size" class="mr-2 form-control" type="text" name="variation_name"
-                                            value="{{ request.GET.variation_name}}">
+                                        <input placeholder="Color or Size" class="mr-2 form-control" type="text"
+                                            name="variation_name" value="{{ request.GET.variation_name}}">
                                     </div>
                                     <button class="btn btn-block btn-primary col-6 mx-auto">Apply</button>
                                 </div>
                                 <!-- card-body.// -->
                             </div>
-                            
+
                         </form>
                     </article> <!-- filter-group .// -->
 

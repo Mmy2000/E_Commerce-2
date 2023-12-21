@@ -8,7 +8,7 @@ from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models.query_utils import Q
 from .forms import ReviewForm
 from django.contrib import messages
-
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -154,3 +154,13 @@ def submit_review(request,product_id):
                 messages.success(request,'Thank You , Your Review has been submitted.')
                 return redirect(url)
 
+def like_or_unlike(request,id):
+    product = Product.objects.get(id=id)
+
+    if request.user in product.like.all():
+        product.like.remove(request.user.id)
+    
+    else:
+        product.like.add(request.user.id)
+    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

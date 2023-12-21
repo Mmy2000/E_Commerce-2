@@ -13,7 +13,8 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.urls import reverse
-
+from django.db.models import Count
+from store.models import Product
 
 
 def signup(request):
@@ -154,3 +155,9 @@ def order_detail(request,order_id):
         'subtotal':subtotal,
     }
     return render(request,'profile/order_detail.html',context)
+
+def user_favourites(request):
+    user_favourites = Product.objects.filter(like=request.user).annotate(product_count=Count('like'))
+    product_count = user_favourites.count()
+    return render(request,'profile/user_favourite.html',{'user_favourites':user_favourites,
+                                                         'product_count':product_count})

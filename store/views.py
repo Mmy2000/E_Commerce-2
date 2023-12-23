@@ -127,7 +127,7 @@ def search(request):
         else :
             return render(request , 'store/store.html')
     context = {
-        'product':product , 
+        'products':product , 
         'product_count':product_count
     }
     return render(request , 'store/store.html', context)

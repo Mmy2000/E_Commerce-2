@@ -94,7 +94,7 @@ def resetPassword(request):
     else:
         return render(request, 'registration/resetPassword.html')
 
-
+@login_required(login_url='login')
 def profile(request):
     profile=Profile.objects.get(user=request.user)
 
@@ -122,7 +122,7 @@ def edit_profile(request):
         'user_form':user_form,
         'profile_form':profile_form,
     })
-
+@login_required(login_url='login')
 def dashboard(request):
     profile=Profile.objects.get(user=request.user)
     orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id,is_orderd=True)
@@ -156,6 +156,7 @@ def order_detail(request,order_id):
     }
     return render(request,'profile/order_detail.html',context)
 
+@login_required(login_url='login')
 def user_favourites(request):
     user_favourites = Product.objects.filter(like=request.user).annotate(product_count=Count('like'))
     product_count = user_favourites.count()

@@ -15,6 +15,7 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.db.models import Count
 from store.models import Product
+from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 
 
 def signup(request):
@@ -159,6 +160,9 @@ def order_detail(request,order_id):
 @login_required(login_url='login')
 def user_favourites(request):
     user_favourites = Product.objects.filter(like=request.user).annotate(product_count=Count('like'))
+    paginator = Paginator(user_favourites,6)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
     product_count = user_favourites.count()
-    return render(request,'profile/user_favourite.html',{'user_favourites':user_favourites,
+    return render(request,'profile/user_favourite.html',{'user_favourites':paged_product,
                                                          'product_count':product_count})

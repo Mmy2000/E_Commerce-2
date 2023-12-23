@@ -9,6 +9,7 @@ from django.db.models.query_utils import Q
 from .forms import ReviewForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -153,7 +154,8 @@ def submit_review(request,product_id):
                 data.save()
                 messages.success(request,'Thank You , Your Review has been submitted.')
                 return redirect(url)
-
+            
+@login_required(login_url='login')
 def like_or_unlike(request,id):
     product = Product.objects.get(id=id)
 

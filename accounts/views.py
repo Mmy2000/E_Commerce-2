@@ -160,7 +160,7 @@ def order_detail(request,order_id):
 @login_required(login_url='login')
 def user_favourites(request):
     user_favourites = Product.objects.filter(like=request.user).annotate(product_count=Count('like'))
-    paginator = Paginator(user_favourites,6)
+    paginator = Paginator(user_favourites,2)
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
     product_count = user_favourites.count()

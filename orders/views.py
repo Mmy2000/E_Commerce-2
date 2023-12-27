@@ -9,6 +9,8 @@ from store.models import Product
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.contrib import messages
+
 
 # Create your views here.
 def place_order(request, total=0, quantity=0,):
@@ -71,8 +73,11 @@ def place_order(request, total=0, quantity=0,):
                 'grand_total': grand_total,
             }
             return render(request, 'orders/payments.html', context)
+        else:
+          messages.error(request, 'Pls, Add your Delivery info')
+          return redirect(reverse('carts:checkout'))  
     else:
-        return redirect('checkout')
+        return redirect(reverse('carts:checkout'))
 
 def payments(request):
     body = json.loads(request.body)
